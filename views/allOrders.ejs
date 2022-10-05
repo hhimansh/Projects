@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/form.css">
+    <title>All Orders</title>
+</head>
+<body>
+    <header>
+        <h1>Super Costume</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="allOrders">Orders</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Info</a></li>
+        </ul>
+    </nav>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>city</th>
+            <th>Province</th>
+            <th># of Kids Costume</th>
+            <th># of Adult Costume</th>
+            <th># of Seniors Costume</th>
+            <th>Tax</th>
+            <th>Total</th>
+        </tr>
+        <% 
+            for(var order of orders){
+        %>
+                <tr>
+                    <td><%- order.name %></td>
+                    <td><%- order.phone %></td>
+                    <td><%- order.email %></td>
+                    <td><%- order.address %></td>
+                    <td><%- order.city %></td>
+                    <td><%- order.province %></td>
+                    <td><%- order.quantitykids %></td>
+                    <td><%- order.quantityadult %></td>
+                    <td><%- order.quantityseniors %></td>
+                    <td><%- order.salesTax %>%</td>
+                    <td>$<%- order.total %></td>
+                </tr>
+        <%
+            }
+        %> 
+    </table>
+</body>
+</html>

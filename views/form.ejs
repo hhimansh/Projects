@@ -1,0 +1,132 @@
+<% 
+    var inputName = '';
+    var inputPhone = '';
+    var inputEmail = '';
+    var inputAddress = '';
+    var inputCity = '';
+    var inputProvince = '';
+    var kidscostume = '';
+    var adultcostume = '';
+    var seniorcostume = '';
+    if(typeof(userData) != 'undefined'){
+        inputName = userData.name;
+        inputPhone = userData.phone;
+        inputEmail = userData.email;
+        inputAddress = userData.address;
+        inputCity = userData.city;
+        inputProvince = userData.province;
+        kidscostume = userData.kids;
+        adultcostume = userData.adult;
+        seniorcostume = userData.seniors;
+    }
+%> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Costumes</title>
+    <script type="text/javascript" src="js/form.js"></script>
+    <link rel="stylesheet" href="/css/form.css">
+</head>
+<body>
+    <header>
+        <h1>Super Costume</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="allOrders">Orders</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Info</a></li>
+        </ul>
+    </nav>
+    <section class="section1">
+        <form action="" name="myform" method="Post">
+            <div class="information">
+                <div>
+                    <h2><u>Choose Costume Size!</u></h2>
+                    <label for="kids">Kids Costume ($100)</label>
+                    <input type="text" id="kids" placeholder="Quantity" name="kids" value="<%= kidscostume %>"><br>
+                    <label for="adult">Adult Costume ($300)</label>
+                    <input type="text" id="adult" placeholder="Quantity" name="adult" value="<%= adultcostume %>"><br>
+                    <label for="seniors">Senior Costume($500)</label>
+                    <input type="text" id="seniors" placeholder="Quantity" name="seniors" value="<%= seniorcostume %>"><br><br>
+                </div>
+                <div>
+                    <h2><u>Customer Details</u></h2>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="John" name="name" value="<%= inputName %>"><br>
+                    <label for="phone">Phone Number</label>
+                    <input type="text" id="phone" placeholder="##########" name="phone" value="<%= inputPhone %>"><br>
+                    <label for="email">Email</label>
+                    <input type="text" id="email" placeholder="john@gmail.com" name="email" value="<%= inputEmail %>"><br>
+                    <label for="address">Address</label>
+                    <input type="text" id="address" placeholder="Address" name="address" value="<%= inputAddress %>"><br>
+                    <label for="city">City</label>
+                    <input type="text" id="city" placeholder="City" name="city" value="<%= inputCity %>"><br>
+                    <label for="province">Province</label>
+                    <select name="province" id="province">
+                        <option value="">SELECT</option>
+                        <option <% if(inputProvince == 'Alberta') {%> selected <% } %> value="Alberta">Alberta</option>
+                        <option <% if(inputProvince == 'BritishColumbia') {%> selected <% } %> value="BritishColumbia">British Columbia</option>
+                        <option <% if(inputProvince == 'Manitoba') {%> selected <% } %> value="Manitoba">Manitoba</option>
+                        <option <% if(inputProvince == 'NewBrunswick') {%> selected <% } %> value="NewBrunswick">New Brunswick</option>
+                        <option <% if(inputProvince == 'NewfoundlandandLabrador') {%> selected <% } %> value="NewfoundlandandLabrador">Newfoundland and Labrador</option>
+                        <option <% if(inputProvince == 'NorthwestTerritories') {%> selected <% } %> value="NorthwestTerritories">Northwest Territories</option>
+                        <option <% if(inputProvince == 'NovaScotia') {%> selected <% } %> value="NovaScotia">Nova Scotia</option>
+                        <option <% if(inputProvince == 'Nunavut') {%> selected <% } %> value="Nunavut">Nunavut</option>
+                        <option <% if(inputProvince == 'Ontario') {%> selected <% } %> value="Ontario">Ontario</option>
+                        <option <% if(inputProvince == 'PrinceEdwardIsland') {%> selected <% } %> value="PrinceEdwardIsland">Prince Edward Island</option>
+                        <option <% if(inputProvince == 'Quebec') {%> selected <% } %> value="Quebec">Quebec</option>
+                        <option <% if(inputProvince == 'Saskatchewan') {%> selected <% } %> value="Saskatchewan">Saskatchewan</option>
+                        <option <% if(inputProvince == 'Yukon') {%> selected <% } %> value="Yukon">Yukon</option>
+                    </select><br/>
+                
+                    <p id="infoErrors">
+                        <!-- Errors -->
+                        <%
+                            if(typeof(errors) != 'undefined'){
+                                for(var error of errors){
+                                    
+                                    %>
+                                        <%= error.msg %> <br>
+                                    <%     
+
+                                }
+                            }
+                        %>
+                    </p>
+                </div>
+                <input type="submit" value="Submit" id="button">
+            </div>
+        </form>
+    </section>
+    <section class="section2">
+        <div class="result">
+            <p class="resultData">
+                <h2>Billing Details</h2>
+                <% 
+                    if(typeof(name) != 'undefined')
+                    {
+                %>
+                    <b>Name: </b> <%= name %> <br>
+                    <b>Email: </b> <%= email %> <br>
+                    <b>Phone: </b> <%= phone %> <br>
+                    <b>Address: </b> <%= address %> <br>
+                    <b>City: </b> <%= city %> <br>
+                    <b>Province: </b> <%= province %> <br>
+                    <b>Kids Costume: </b> <%= quantitykids %> <br>
+                    <b>Adult Costume: </b> <%= quantityadult %> <br>
+                    <b>Seniors Costume: </b> <%= quantityseniors %> <br>
+                    <b>Sales Tax: </b> <%= salesTax %> %<br>
+                    <b>Total: $</b> <%= total %> <br>
+                <%
+                    }
+                %>
+            </p>
+        </div>
+    </section>
+</body>
+</html>
